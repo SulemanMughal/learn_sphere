@@ -19,13 +19,15 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from students.views import admin_dashboard
+from students.views import admin_dashboard, index
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('students/', include('students.urls')),
     path('payments/', include('payments.urls')),   # PAYMENTS
+
+    path("", index, name="index"),
 
     path('', include('django.contrib.auth.urls')),
 

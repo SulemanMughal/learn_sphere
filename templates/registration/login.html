@@ -1,20 +1,80 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Sphere - Login</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-left">
+            <div class="login-content">
+                <h1>Learn Sphere</h1>
+                <p>Student Management System</p>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Course Management</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Student Enrollment</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span>Attendance Tracking</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Results Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="login-right">
+            <div class="login-form-container">
+                <div class="login-header">
+                    <h2>Welcome Back</h2>
+                    <p>Please login to your account</p>
+                </div>
+                <form id="loginForm" class="login-form" method="POST" >
 
-{% block content %}
-<div class="container py-5" style="max-width:400px;">
-  <h2>Log In</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% if next %}
-      <input type="hidden" name="next" value="{{ next }}" />
+                  {% if next %}
+      <input type="hidden" name="next" value="/students/dashboard" />
     {% endif %}
-    {% if form.non_field_errors %}
-      <div class="alert alert-danger">
-        {{ form.non_field_errors }}
-      </div>
-    {% endif %}
-    {{ form }}
-    <button type="submit" class="btn btn-primary">Log In</button>
-  </form>
-</div>
-{% endblock %}
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+                <div class="login-footer">
+                    <p>Don't have an account? Contact your administrator</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -31,6 +31,8 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 
 
+def index(request):
+    return render(request, 'students/index.html')
 
 @login_required
 def report_card(request):
@@ -259,6 +261,14 @@ def compose_message(request):
 def inbox(request):
     msgs = Message.objects.filter(recipient=request.user).order_by('-sent_on')
     return render(request, 'students/teacher/inbox.html', {'messages': msgs})
+
+
+
+# @login_required
+@user_passes_test(is_teacher)
+def students_management(request):
+    # msgs = Message.objects.filter(recipient=request.user).order_by('-sent_on')
+    return render(request, 'students/teacher/students.html', {})
 
 
 

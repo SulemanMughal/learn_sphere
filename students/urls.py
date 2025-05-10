@@ -24,6 +24,7 @@ urlpatterns = [
     path('teacher/upload-resource/',     views.upload_resource,       name='upload-resource'),
     path('teacher/compose/',             views.compose_message,       name='teacher-compose'),
     path('teacher/inbox/',               views.inbox,                 name='teacher-inbox'),
+    path('teacher/students-management/',               views.students_management,                 name='teacher-students-management'),
 
 
     # Scheduling

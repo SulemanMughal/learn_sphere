@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Management - Learn Sphere</title>
+    <title>Student Management - Learn Sphere</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -21,11 +21,11 @@
                     <i class="fas fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
-                <a href="courses.html" class="menu-item active">
+                <a href="courses.html" class="menu-item">
                     <i class="fas fa-graduation-cap"></i>
                     <span>Courses</span>
                 </a>
-                <a href="students.html" class="menu-item">
+                <a href="students.html" class="menu-item active">
                     <i class="fas fa-user-graduate"></i>
                     <span>Students</span>
                 </a>
@@ -61,7 +61,7 @@
             <!-- Top Bar -->
             <div class="topbar">
                 <div class="page-title">
-                    <h1>Course Management</h1>
+                    <h1>Student Management</h1>
                 </div>
                 <div class="user-menu">
                     <div class="user-info">
@@ -74,52 +74,13 @@
                 </div>
             </div>
 
-            <!-- Course Management Tools -->
-            <div class="dashboard-cards">
-                <div class="card stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 id="totalCourses">0</h3>
-                        <p>Total Courses</p>
-                    </div>
-                </div>
-                <div class="card stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 id="totalEnrollments">0</h3>
-                        <p>Total Enrollments</p>
-                    </div>
-                </div>
-                <div class="card stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 id="totalInstructors">0</h3>
-                        <p>Total Instructors</p>
-                    </div>
-                </div>
-                <div class="card stat-card">
-                    <div class="stat-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3 id="activeCourses">0</h3>
-                        <p>Active Courses</p>
-                    </div>
-                </div>
-            </div>
-
+            <!-- Student Management Tools -->
             <div class="data-table-container">
                 <div class="data-table-header">
-                    <div class="data-table-title">All Courses</div>
+                    <div class="data-table-title">All Students</div>
                     <div class="data-table-actions">
                         <div class="search-container">
-                            <input type="text" id="courseSearch" placeholder="Search courses..." class="search-input">
+                            <input type="text" id="studentSearch" placeholder="Search students..." class="search-input">
                             <button class="btn btn-outline" id="searchBtn">
                                 <i class="fas fa-search"></i>
                             </button>
@@ -127,8 +88,8 @@
                         <button class="btn btn-outline" id="filterBtn">
                             <i class="fas fa-filter"></i> Filter
                         </button>
-                        <button class="btn btn-primary" id="addCourseBtn">
-                            <i class="fas fa-plus"></i> Add Course
+                        <button class="btn btn-primary" id="addStudentBtn">
+                            <i class="fas fa-plus"></i> Add Student
                         </button>
                     </div>
                 </div>
@@ -137,9 +98,9 @@
                 <div class="filter-options" id="filterOptions" style="display: none; margin-bottom: 1rem; padding: 1rem; background-color: #f8f9fa; border-radius: 8px;">
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
                         <div class="form-group">
-                            <label for="filterDepartment">Department</label>
-                            <select id="filterDepartment" class="form-control">
-                                <option value="">All Departments</option>
+                            <label for="filterCourse">Course</label>
+                            <select id="filterCourse" class="form-control">
+                                <option value="">All Courses</option>
                                 <option value="Computer Science">Computer Science</option>
                                 <option value="Data Science">Data Science</option>
                                 <option value="Web Development">Web Development</option>
@@ -156,12 +117,13 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="filterDuration">Duration</label>
-                            <select id="filterDuration" class="form-control">
-                                <option value="">All Durations</option>
-                                <option value="3">3 Months</option>
-                                <option value="6">6 Months</option>
-                                <option value="12">12 Months</option>
+                            <label for="filterYear">Year</label>
+                            <select id="filterYear" class="form-control">
+                                <option value="">All Years</option>
+                                <option value="1">Year 1</option>
+                                <option value="2">Year 2</option>
+                                <option value="3">Year 3</option>
+                                <option value="4">Year 4</option>
                             </select>
                         </div>
                     </div>
@@ -175,16 +137,15 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Course Name</th>
-                            <th>Department</th>
-                            <th>Instructor</th>
-                            <th>Students</th>
-                            <th>Duration</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Course</th>
+                            <th>Year</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="coursesTableBody">
+                    <tbody id="studentsTableBody">
                         <!-- Table rows will be populated by JavaScript -->
                     </tbody>
                 </table>
@@ -192,7 +153,7 @@
                 <!-- Pagination -->
                 <div class="pagination" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
                     <div class="pagination-info">
-                        Showing <span id="startRange">1</span> to <span id="endRange">10</span> of <span id="totalItems">0</span> courses
+                        Showing <span id="startRange">1</span> to <span id="endRange">10</span> of <span id="totalItems">0</span> students
                     </div>
                     <div class="pagination-controls">
                         <button class="btn btn-outline" id="prevPageBtn" disabled>
@@ -210,32 +171,42 @@
         </div>
     </div>
 
-    <!-- Add/Edit Course Modal -->
-    <div class="modal" id="courseModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; overflow: auto;">
+    <!-- Add/Edit Student Modal -->
+    <div class="modal" id="studentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; overflow: auto;">
         <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 2rem; border-radius: 12px; max-width: 600px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
             <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
-                <h2 id="modalTitle">Add New Course</h2>
+                <h2 id="modalTitle">Add New Student</h2>
                 <button class="close-btn" id="closeModal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <form id="courseForm">
-                <input type="hidden" id="courseId">
+            <form id="studentForm">
+                <input type="hidden" id="studentId">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="courseName">Course Name</label>
-                        <input type="text" id="courseName" name="courseName" class="form-control" required>
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="courseCode">Course Code</label>
-                        <input type="text" id="courseCode" name="courseCode" class="form-control" required>
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" class="form-control" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="department">Department</label>
-                        <select id="department" name="department" class="form-control" required>
-                            <option value="">Select Department</option>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="course">Course</label>
+                        <select id="course" name="course" class="form-control" required>
+                            <option value="">Select Course</option>
                             <option value="Computer Science">Computer Science</option>
                             <option value="Data Science">Data Science</option>
                             <option value="Web Development">Web Development</option>
@@ -244,26 +215,17 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="instructor">Instructor</label>
-                        <select id="instructor" name="instructor" class="form-control" required>
-                            <option value="">Select Instructor</option>
-                            <option value="Dr. Alan Turing">Dr. Alan Turing</option>
-                            <option value="Dr. Ada Lovelace">Dr. Ada Lovelace</option>
-                            <option value="Prof. Tim Berners-Lee">Prof. Tim Berners-Lee</option>
-                            <option value="Dr. Grace Hopper">Dr. Grace Hopper</option>
-                            <option value="Prof. Charles Babbage">Prof. Charles Babbage</option>
+                        <label for="year">Year</label>
+                        <select id="year" name="year" class="form-control" required>
+                            <option value="">Select Year</option>
+                            <option value="1">Year 1</option>
+                            <option value="2">Year 2</option>
+                            <option value="3">Year 3</option>
+                            <option value="4">Year 4</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="duration">Duration (months)</label>
-                        <select id="duration" name="duration" class="form-control" required>
-                            <option value="3">3 Months</option>
-                            <option value="6">6 Months</option>
-                            <option value="12">12 Months</option>
-                        </select>
-                    </div>
                     <div class="form-group">
                         <label for="status">Status</label>
                         <select id="status" name="status" class="form-control" required>
@@ -271,14 +233,14 @@
                             <option value="Inactive">Inactive</option>
                         </select>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description" class="form-control" rows="4"></textarea>
+                    <div class="form-group">
+                        <label for="enrollmentDate">Enrollment Date</label>
+                        <input type="date" id="enrollmentDate" name="enrollmentDate" class="form-control" required>
+                    </div>
                 </div>
                 <div class="form-actions">
                     <button type="button" class="btn btn-outline" id="cancelBtn">Cancel</button>
-                    <button type="submit" class="btn btn-primary" id="saveCourseBtn">Save Course</button>
+                    <button type="submit" class="btn btn-primary" id="saveStudentBtn">Save Student</button>
                 </div>
             </form>
         </div>
@@ -294,8 +256,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to delete this course? This action cannot be undone.</p>
-                <input type="hidden" id="deleteCourseId">
+                <p>Are you sure you want to delete this student? This action cannot be undone.</p>
+                <input type="hidden" id="deleteStudentId">
             </div>
             <div class="form-actions" style="margin-top: 1.5rem;">
                 <button type="button" class="btn btn-outline" id="cancelDeleteBtn">Cancel</button>
@@ -304,6 +266,6 @@
         </div>
     </div>
 
-    <script src="{% static 'js/courses.js' %}"></script>
+    <script src="{% static 'js/students-management.js' %}"></script>
 </body>
 </html>

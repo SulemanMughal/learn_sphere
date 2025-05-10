@@ -1,24 +1,287 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="container py-5">
-  <h2>Your Attendance</h2>
-  {% if attendance %}
-    <table class="table">
-      <thead>
-        <tr><th>Date</th><th>Course</th><th>Status</th></tr>
-      </thead>
-      <tbody>
-        {% for a in attendance %}
-        <tr>
-          <td>{{ a.date|date:"M j, Y" }}</td>
-          <td>{{ a.course.code }}</td>
-          <td>{{ a.get_status_display }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <p>No attendance records found.</p>
-  {% endif %}
-</div>
-{% endblock %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management - Learn Sphere</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Learn Sphere</h2>
+            </div>
+            <div class="sidebar-menu">
+                <a href="admin-dashboard.html" class="menu-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="courses.html" class="menu-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Courses</span>
+                </a>
+                <a href="students.html" class="menu-item">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Students</span>
+                </a>
+                <a href="staff.html" class="menu-item">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Staff</span>
+                </a>
+                <a href="attendance.html" class="menu-item active">
+                    <i class="fas fa-clipboard-check"></i>
+                    <span>Attendance</span>
+                </a>
+                <a href="results.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Results</span>
+                </a>
+                <a href="notifications.html" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+                <a href="settings.html" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="#" class="menu-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="topbar">
+                <div class="page-title">
+                    <h1>Attendance Management</h1>
+                </div>
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="user-name">Admin User</div>
+                        <div class="user-role">Administrator</div>
+                    </div>
+                    <div class="user-avatar">
+                        <span>A</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Overview -->
+            <div class="dashboard-cards">
+                <div class="card stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="overallAttendance">0%</h3>
+                        <p>Overall Attendance</p>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="todayAttendance">0%</h3>
+                        <p>Today's Attendance</p>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="presentStudents">0</h3>
+                        <p>Present Students</p>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-times"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="absentStudents">0</h3>
+                        <p>Absent Students</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Management Tools -->
+            <div class="data-table-container" style="margin-top: 2rem;">
+                <div class="data-table-header">
+                    <div class="data-table-title">Attendance Management</div>
+                    <div class="data-table-actions">
+                        <button class="btn btn-outline" id="exportBtn">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                        <button class="btn btn-primary" id="takeAttendanceBtn">
+                            <i class="fas fa-clipboard-check"></i> Take Attendance
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Filter Options -->
+                <div class="filter-options" style="margin-bottom: 1rem; padding: 1rem; background-color: #f8f9fa; border-radius: 8px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="filterCourse">Course</label>
+                            <select id="filterCourse" class="form-control">
+                                <option value="">All Courses</option>
+                                <option value="Computer Science Fundamentals">Computer Science Fundamentals</option>
+                                <option value="Data Science and Analytics">Data Science and Analytics</option>
+                                <option value="Web Development Bootcamp">Web Development Bootcamp</option>
+                                <option value="Artificial Intelligence">Artificial Intelligence</option>
+                                <option value="Cybersecurity Essentials">Cybersecurity Essentials</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filterDate">Date</label>
+                            <input type="date" id="filterDate" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="filterStatus">Status</label>
+                            <select id="filterStatus" class="form-control">
+                                <option value="">All Status</option>
+                                <option value="Present">Present</option>
+                                <option value="Absent">Absent</option>
+                                <option value="Late">Late</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
+                        <button class="btn btn-outline" id="resetFilterBtn" style="margin-right: 0.5rem;">Reset</button>
+                        <button class="btn btn-primary" id="applyFilterBtn">Apply Filters</button>
+                    </div>
+                </div>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Course</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceTableBody">
+                        <!-- Table rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+                
+                <!-- Pagination -->
+                <div class="pagination" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                    <div class="pagination-info">
+                        Showing <span id="startRange">1</span> to <span id="endRange">10</span> of <span id="totalItems">0</span> records
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="btn btn-outline" id="prevPageBtn" disabled>
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <span class="pagination-pages" id="paginationPages">
+                            Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+                        </span>
+                        <button class="btn btn-outline" id="nextPageBtn">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Take Attendance Modal -->
+    <div class="modal" id="attendanceModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; overflow: auto;">
+        <div class="modal-content" style="background-color: white; margin: 5% auto; padding: 2rem; border-radius: 12px; max-width: 800px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                <h2 id="modalTitle">Take Attendance</h2>
+                <button class="close-btn" id="closeModal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="attendanceForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="attendanceCourse">Course</label>
+                        <select id="attendanceCourse" name="course" class="form-control" required>
+                            <option value="">Select Course</option>
+                            <option value="Computer Science Fundamentals">Computer Science Fundamentals</option>
+                            <option value="Data Science and Analytics">Data Science and Analytics</option>
+                            <option value="Web Development Bootcamp">Web Development Bootcamp</option>
+                            <option value="Artificial Intelligence">Artificial Intelligence</option>
+                            <option value="Cybersecurity Essentials">Cybersecurity Essentials</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="attendanceDate">Date</label>
+                        <input type="date" id="attendanceDate" name="date" class="form-control" required>
+                    </div>
+                </div>
+                
+                <div id="studentsList" style="margin-top: 1.5rem; max-height: 400px; overflow-y: auto;">
+                    <!-- Student list will be populated by JavaScript -->
+                </div>
+                
+                <div class="form-actions" style="margin-top: 1.5rem;">
+                    <button type="button" class="btn btn-outline" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="saveAttendanceBtn">Save Attendance</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Attendance Modal -->
+    <div class="modal" id="editAttendanceModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; overflow: auto;">
+        <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 2rem; border-radius: 12px; max-width: 500px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                <h2>Edit Attendance</h2>
+                <button class="close-btn" id="closeEditModal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="editAttendanceForm">
+                <input type="hidden" id="editAttendanceId">
+                <div class="form-group">
+                    <label for="editStudentName">Student</label>
+                    <input type="text" id="editStudentName" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="editCourse">Course</label>
+                    <input type="text" id="editCourse" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="editDate">Date</label>
+                    <input type="date" id="editDate" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="editStatus">Status</label>
+                    <select id="editStatus" name="status" class="form-control" required>
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                        <option value="Late">Late</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editRemarks">Remarks</label>
+                    <textarea id="editRemarks" name="remarks" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="cancelEditBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="saveEditBtn">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'js/attendance.js' %}"></script>
+</body>
+</html>

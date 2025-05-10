@@ -1,0 +1,544 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Sphere - Student Management System</title>
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="index.html">
+                    <span class="logo-text">Learn<span class="highlight">Sphere</span></span>
+                </a>
+            </div>
+            <div class="navbar-menu" id="navbarMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
+                    <li class="nav-item"><a href="#benefits" class="nav-link">Benefits</a></li>
+                    <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="navbar-actions">
+                <a href="login.html" class="btn btn-outline">Log In</a>
+                <a href="#demo" class="btn btn-primary">Request Demo</a>
+            </div>
+            <button class="navbar-toggle" id="navbarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Streamline Your Educational Institution Management</h1>
+                <p class="hero-subtitle">A comprehensive student management system designed to simplify administration, enhance learning experiences, and improve communication.</p>
+                <div class="hero-actions">
+                    <a href="login.html" class="btn btn-primary btn-lg">Get Started</a>
+                    <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Institutions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50,000+</span>
+                        <span class="stat-label">Students</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Satisfaction</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Learn Sphere Dashboard" class="dashboard-preview">
+                <div class="hero-shape-1"></div>
+                <div class="hero-shape-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-subtitle">Everything you need to manage your educational institution efficiently</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="feature-title">Student Management</h3>
+                    <p class="feature-description">Comprehensive student profiles, enrollment tracking, and performance analytics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="feature-title">Course Management</h3>
+                    <p class="feature-description">Create, organize, and manage courses with ease. Track curriculum and resources.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3 class="feature-title">Attendance Tracking</h3>
+                    <p class="feature-description">Automated attendance systems with detailed reports and notifications.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Results Management</h3>
+                    <p class="feature-description">Manage exams, grades, and generate comprehensive performance reports.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="feature-title">Notifications</h3>
+                    <p class="feature-description">Real-time alerts and announcements for students, staff, and administrators.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="feature-title">Advanced Analytics</h3>
+                    <p class="feature-description">Data-driven insights to improve educational outcomes and operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview Section -->
+    <section class="dashboard-preview-section">
+        <div class="container">
+            <div class="dashboard-preview-content">
+                <div class="section-header left-aligned">
+                    <h2 class="section-title">Intuitive Dashboards</h2>
+                    <p class="section-subtitle">Customized views for administrators, staff, and students</p>
+                </div>
+                <div class="dashboard-tabs">
+                    <button class="tab-btn active" data-tab="admin">Admin Dashboard</button>
+                    <button class="tab-btn" data-tab="staff">Staff Dashboard</button>
+                    <button class="tab-btn" data-tab="student">Student Dashboard</button>
+                </div>
+                <div class="dashboard-features">
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Real-time analytics and reporting</li>
+                        <li><i class="fas fa-check"></i> Customizable widgets and layouts</li>
+                        <li><i class="fas fa-check"></i> Mobile-responsive design</li>
+                        <li><i class="fas fa-check"></i> Role-based access controls</li>
+                        <li><i class="fas fa-check"></i> Integrated notification system</li>
+                    </ul>
+                </div>
+                <div class="dashboard-cta">
+                    <a href="#demo" class="btn btn-primary">Schedule a Demo</a>
+                </div>
+            </div>
+            <div class="dashboard-preview-images">
+                <div class="tab-content active" id="admin-tab">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Admin Dashboard" class="dashboard-img">
+                </div>
+                <div class="tab-content" id="staff-tab">
+                    <img src="https://images.wondershare.com/mockitt/tips/simple-design.jpg" alt="Staff Dashboard" class="dashboard-img">
+                </div>
+                <div class="tab-content" id="student-tab">
+                    <img src="https://images.creativemarket.com/0.1.0/ps/12457863/2340/1560/m1/fpnw/wm0/00_main_preview-.jpg?1653638264=&s=1da8e6826107c1e75d85b495c695b553" alt="Student Dashboard" class="dashboard-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Learn Sphere?</h2>
+                <p class="section-subtitle">Transform your educational institution with our comprehensive solution</p>
+            </div>
+            <div class="benefits-container">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">Increased Efficiency</h3>
+                        <p class="benefit-description">Automate administrative tasks and reduce paperwork, saving valuable time for educators and staff.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">Data-Driven Decisions</h3>
+                        <p class="benefit-description">Access comprehensive analytics and reports to make informed decisions about your institution.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">Enhanced Communication</h3>
+                        <p class="benefit-description">Improve communication between administrators, educators, students, and parents.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h3 class="benefit-title">Secure & Reliable</h3>
+                        <p class="benefit-description">Enterprise-grade security ensures your data is protected and always accessible when you need it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Users Say</h2>
+                <p class="section-subtitle">Trusted by educational institutions worldwide</p>
+            </div>
+            <div class="testimonial-slider" id="testimonialSlider">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                            <p>Learn Sphere has revolutionized how we manage our university. The comprehensive features and intuitive interface have made administrative tasks significantly more efficient.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            
+                            <i class="fas fa-user fa-3x" class="author-image"></i>
+                            <div class="author-info">
+                                <h4 class="author-name">Dr. Sarah Johnson</h4>
+                                <p class="author-position">Dean of Administration, Global University</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                            <p>The attendance tracking and results management features have saved our staff countless hours. The analytics provide valuable insights that help us improve student outcomes.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <i class="fas fa-user fa-3x" class="author-image"></i>
+                            <div class="author-info">
+                                <h4 class="author-name">Prof. Michael Chen</h4>
+                                <p class="author-position">Principal, Tech Academy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                            <p>As a student, I love how easy it is to access my courses, check my attendance, and view my results. The notification system ensures I never miss important announcements.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <i class="fas fa-user fa-3x" class="author-image"></i>
+                            <div class="author-info">
+                                <h4 class="author-name">Emma Rodriguez</h4>
+                                <p class="author-position">Student, Innovation College</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <button class="testimonial-control" data-slide="0"></button>
+                <button class="testimonial-control" data-slide="1"></button>
+                <button class="testimonial-control" data-slide="2"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Simple, Transparent Pricing</h2>
+                <p class="section-subtitle">Choose the plan that fits your institution's needs</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Starter</h3>
+                        <div class="pricing-price">
+                            <span class="currency">$</span>
+                            <span class="amount">99</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="pricing-subtitle">Perfect for small institutions</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Up to 500 students</li>
+                            <li><i class="fas fa-check"></i> Core management features</li>
+                            <li><i class="fas fa-check"></i> Basic reporting</li>
+                            <li><i class="fas fa-check"></i> Email support</li>
+                            <li><i class="fas fa-check"></i> Mobile app access</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Advanced analytics</li>
+                            <li class="disabled"><i class="fas fa-times"></i> API access</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Custom integrations</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="#demo" class="btn btn-outline btn-block">Get Started</a>
+                    </div>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Professional</h3>
+                        <div class="pricing-price">
+                            <span class="currency">$</span>
+                            <span class="amount">249</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="pricing-subtitle">Ideal for growing institutions</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Up to 2,000 students</li>
+                            <li><i class="fas fa-check"></i> All management features</li>
+                            <li><i class="fas fa-check"></i> Advanced reporting</li>
+                            <li><i class="fas fa-check"></i> Priority support</li>
+                            <li><i class="fas fa-check"></i> Mobile app access</li>
+                            <li><i class="fas fa-check"></i> Advanced analytics</li>
+                            <li><i class="fas fa-check"></i> API access</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Custom integrations</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="#demo" class="btn btn-primary btn-block">Get Started</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Enterprise</h3>
+                        <div class="pricing-price">
+                            <span class="currency">$</span>
+                            <span class="amount">499</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="pricing-subtitle">For large educational institutions</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Unlimited students</li>
+                            <li><i class="fas fa-check"></i> All management features</li>
+                            <li><i class="fas fa-check"></i> Custom reporting</li>
+                            <li><i class="fas fa-check"></i> 24/7 dedicated support</li>
+                            <li><i class="fas fa-check"></i> Mobile app access</li>
+                            <li><i class="fas fa-check"></i> Advanced analytics</li>
+                            <li><i class="fas fa-check"></i> API access</li>
+                            <li><i class="fas fa-check"></i> Custom integrations</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-action">
+                        <a href="#demo" class="btn btn-outline btn-block">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="demo">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to transform your institution?</h2>
+                <p class="cta-subtitle">Schedule a personalized demo to see how Learn Sphere can help you streamline your educational management.</p>
+                <form class="cta-form" id="demoForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="institution" name="institution" placeholder="Institution Name" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="size" name="size" required>
+                            <option value="" disabled selected>Institution Size</option>
+                            <option value="small">Small (< 500 students)</option>
+                            <option value="medium">Medium (500-2000 students)</option>
+                            <option value="large">Large (> 2000 students)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Request Demo</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">Have questions? Our team is here to help</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Address</h4>
+                            <p>123 Education Street, Tech City, TC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p>+1 (123) 456-7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>info@learnsphere.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <h4>Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Name</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <input type="text" id="contactSubject" name="contactSubject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-text">Learn<span class="highlight">Sphere</span></span>
+                    </a>
+                    <p class="footer-description">
+                        A comprehensive student management system designed to simplify administration, enhance learning experiences, and improve communication.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">Product</h4>
+                        <ul class="footer-menu">
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#demo">Request Demo</a></li>
+                            <li><a href="#">Roadmap</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-title">Company</h4>
+                        <ul class="footer-menu">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-title">Resources</h4>
+                        <ul class="footer-menu">
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">API Reference</a></li>
+                            <li><a href="#">Community</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-title">Legal</h4>
+                        <ul class="footer-menu">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Security</a></li>
+                            <li><a href="#">Compliance</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2023 Learn Sphere. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="{% static 'js/landing.js' %}"></script>
+</body>
+</html>
