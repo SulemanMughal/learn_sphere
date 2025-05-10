@@ -1,5 +1,4 @@
-**Project Title**
-Django-Based Student Management System (SMS)
+**Django-Based Student Management System (SMS)**
 
 ---
 
