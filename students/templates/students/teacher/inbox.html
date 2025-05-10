@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Inbox</h2>
+{% for msg in messages %}
+  <div class="card mb-2">
+    <div class="card-header">
+      {{ msg.subject }} – from {{ msg.sender.username }} on {{ msg.sent_on|date:"M j, Y H:i" }}
+    </div>
+    <div class="card-body">
+      {{ msg.body }}
+    </div>
+  </div>
+{% empty %}
+  <p>No messages.</p>
+{% endfor %}
+{% endblock %}

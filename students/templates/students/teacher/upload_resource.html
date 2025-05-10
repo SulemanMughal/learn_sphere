@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Upload Course Resource</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form }}
+  <button class="btn btn-success">Upload</button>
+</form>
+{% endblock %}

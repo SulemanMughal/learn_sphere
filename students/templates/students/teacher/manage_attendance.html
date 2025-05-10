@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load group_tags %}
+
+{% block content %}
+<h2>Attendance for {{ course.code }} – {{ course.name }}</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ formset.management_form }}
+  <table class="table">
+    <tr><th>Student</th><th>Status</th></tr>
+    {% for form in formset %}
+      <tr>
+        <td>{{ students.forloop.parentloop.counter0|get_item:forloop.counter0 }}</td>
+        <td>{{ form.status }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <button class="btn btn-primary">Save</button>
+</form>
+{% endblock %}

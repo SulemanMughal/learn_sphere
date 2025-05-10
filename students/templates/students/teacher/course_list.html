@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Courses</h2>
+<a href="{% url 'students:teacher-course-add' %}" class="btn btn-sm btn-primary">+ New Course</a>
+<ul class="list-group mt-3">
+  {% for c in courses %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ c.code }} – {{ c.name }}
+      <span>
+        <a href="{% url 'students:teacher-course-edit' c.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+        <a href="{% url 'students:teacher-course-delete' c.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+      </span>
+    </li>
+  {% empty %}
+    <li class="list-group-item">You’re not assigned to any courses.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

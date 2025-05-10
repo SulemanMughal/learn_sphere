@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container py-5">
+    <h1>Payment Canceled</h1>
+    <p>Your payment was not processed. You can try again or contact support.</p>
+    <a href="{% url 'payments:checkout' %}" class="btn btn-warning">Retry Payment</a>
+  </div>
+{% endblock %}

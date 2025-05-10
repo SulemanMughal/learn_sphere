@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+  <h2>Delete Course</h2>
+  <p>Are you sure you want to permanently delete “{{ object.code }} – {{ object.name }}”?</p>
+  <form method="post">{% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a href="{% url 'students:teacher-courses' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'admin/base_site.html' %}
+{% block content %}
+  <h1>Site Overview</h1>
+  <div class="dashboard-stats">
+    <p><strong>Students:</strong> {{ total_students }}</p>
+    <p><strong>Teachers:</strong> {{ total_teachers }}</p>
+    <p><strong>Courses :</strong> {{ total_courses }}</p>
+    <p><strong>Enrollments :</strong> {{ total_enroll }}</p>
+  </div>
+
+  <h2>Top 5 Courses</h2>
+  <ol>
+    {% for course in popular_courses %}
+      <li>{{ course.code }} – {{ course.name }} ({{ course.num_students }} students)</li>
+    {% endfor %}
+  </ol>
+{% endblock %}

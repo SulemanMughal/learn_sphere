@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+  <h2>Academic Documents</h2>
+  {% if docs %}
+    <ul class="list-group">
+      {% for d in docs %}
+        <li class="list-group-item d-flex justify-content-between">
+          {{ d.title }}
+          <a href="{% url 'students:download_doc' d.id %}" class="btn btn-sm btn-outline-primary">
+            Download
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No documents available.</p>
+  {% endif %}
+</div>
+{% endblock %}

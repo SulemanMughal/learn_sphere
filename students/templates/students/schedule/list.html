@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Class Timetable</h2>
+<a href="{% url 'students:schedule-add' %}" class="btn btn-sm btn-primary">Add Slot</a>
+<table class="table mt-3">
+  <thead><tr>
+    <th>Day</th><th>Time</th><th>Course</th><th>Teacher</th><th>Venue</th><th>Actions</th>
+  </tr></thead>
+  <tbody>
+    {% for s in slots %}
+    <tr>
+      <td>{{ s.get_day_display }}</td>
+      <td>{{ s.start_time }}–{{ s.end_time }}</td>
+      <td>{{ s.course.code }}</td>
+      <td>{{ s.teacher.user.username }}</td>
+      <td>{{ s.venue }}</td>
+      <td>
+        <a href="{% url 'students:schedule-edit' s.pk %}">Edit</a> |
+        <a href="{% url 'students:schedule-delete' s.pk %}">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+      <tr><td colspan="6">No slots scheduled.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

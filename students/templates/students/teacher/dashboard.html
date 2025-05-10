@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Courses</h2>
+<ul>
+  {% for c in courses %}
+    <li>
+      {{ c.code }} – {{ c.name }}
+      [<a href="{% url 'students:manage-attendance' c.id %}">Attendance</a>]
+      [<a href="{% url 'students:manage-marks' c.id %}">Marks</a>]
+    </li>
+  {% endfor %}
+</ul>
+<hr/>
+<a href="{% url 'students:upload-resource' %}">Upload Resource</a> |
+<a href="{% url 'students:teacher-compose' %}">Compose Message</a> |
+<a href="{% url 'students:teacher-inbox' %}">Inbox</a>
+{% endblock %}

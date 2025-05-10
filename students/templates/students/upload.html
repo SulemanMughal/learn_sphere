@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container py-5" style="max-width:600px;">
+  <h2>Upload Document</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+        {{ form.non_field_errors }}
+      </div>
+    {% endif %}
+
+    {{ form }}
+    <button type="submit" class="btn btn-primary">Upload</button>
+  </form>
+
+  
+    - <p>View your <a href="{% url 'students:documents' %}">documents</a>.</p>
+</div>
+{% endblock %}

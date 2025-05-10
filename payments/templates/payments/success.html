@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container py-5">
+    <h1>Thank you!</h1>
+    <p>Your payment was successful and your enrollment is confirmed.</p>
+    <a href="{% url 'students:dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
+  </div>
+{% endblock %}

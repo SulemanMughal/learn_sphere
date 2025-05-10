@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5" style="max-width:600px;">
+  <h2>{% if object %}Edit{% else %}New{% endif %} Course</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-success">
+      {% if object %}Save Changes{% else %}Create Course{% endif %}
+    </button>
+  </form>
+</div>
+{% endblock %}

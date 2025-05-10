@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+  <h1>Welcome, {{ request.user.first_name|default:request.user.username }}!</h1>
+  <p><small>Member since {{ profile.enrolled_on|date:"F j, Y" }}</small></p>
+
+  <hr/>
+
+  <h4>Enrollment Status</h4>
+  {% if profile.is_enrolled %}
+    <div class="alert alert-success">
+      🎉 You’re fully enrolled!
+    </div>
+  {% else %}
+    <div class="alert alert-warning">
+      ⚠️ Payment pending. 
+      <a href="{% url 'payments:checkout' %}">Complete payment →</a>
+    </div>
+  {% endif %}
+
+  <hr/>
+
+  <h4>Your Documents</h4>
+  {% if documents %}
+    <ul class="list-group mb-4">
+      {% for doc in documents %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <span>
+            {{ doc.doc_title }}
+            <br/><small>Uploaded {{ doc.uploaded|date:"F j, Y, g:i a" }}</small>
+          </span>
+          <a href="{{ doc.file.url }}" class="btn btn-sm btn-outline-primary">
+            Download
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No documents yet. <a href="{% url 'students:upload' %}">Upload now</a>.</p>
+  {% endif %}
+
+  <a href="{% url 'students:upload' %}" class="btn btn-primary">
+    Upload New Document
+  </a>
+</div>
+{% endblock %}

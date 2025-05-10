@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+  <h2>Your Attendance</h2>
+  {% if attendance %}
+    <table class="table">
+      <thead>
+        <tr><th>Date</th><th>Course</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        {% for a in attendance %}
+        <tr>
+          <td>{{ a.date|date:"M j, Y" }}</td>
+          <td>{{ a.course.code }}</td>
+          <td>{{ a.get_status_display }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No attendance records found.</p>
+  {% endif %}
+</div>
+{% endblock %}

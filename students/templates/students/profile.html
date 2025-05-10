@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+  <h2>Your Profile</h2>
+  <p><strong>Username:</strong> {{ request.user.username }}</p>
+  <p><strong>Email:</strong> {{ request.user.email }}</p>
+  <p><strong>Enrolled On:</strong> {{ profile.enrolled_on|date:"F j, Y" }}</p>
+</div>
+{% endblock %}
