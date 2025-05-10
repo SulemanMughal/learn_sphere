@@ -1,6 +1,3 @@
-Thought for a few seconds
-
-
 **Project Title**
 Django-Based Student Management System (SMS)
 
